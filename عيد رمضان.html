@@ -1,0 +1,195 @@
+<!DOCTYPE html>
+<html lang="ar">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>تهنئة بعيد رمضان!</title>
+    <style>
+        /* الأساسيات */
+        body {
+            font-family: 'Cairo', sans-serif;
+            text-align: center;
+            background: linear-gradient(45deg, #f5e1a4, #d4af37, #c4a200); /* تدرج ألوان هادئة دافئة */
+            color: #fff;
+            height: 100vh;
+            margin: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-direction: column;
+            overflow: hidden;
+            transition: background-color 0.5s ease;
+        }
+
+        h1 {
+            font-size: 3.5em;
+            margin-bottom: 20px;
+            color: #fff;
+            text-shadow: 0 0 20px #fff, 0 0 30px #fff;
+        }
+
+        .intro-text {
+            font-size: 1.8em;
+            margin-bottom: 30px;
+            color: #fff;
+            animation: glowingText 1.5s ease-in-out infinite alternate;
+        }
+
+        @keyframes glowingText {
+            0% { color: #f5e1a4; text-shadow: 0 0 20px #f5e1a4, 0 0 30px #f5e1a4; }
+            100% { color: #d4af37; text-shadow: 0 0 20px #d4af37, 0 0 30px #d4af37; }
+        }
+
+        .eid-button {
+            background-color: #d4af37;
+            color: #fff;
+            font-size: 1.5em;
+            padding: 15px 30px;
+            border-radius: 50px;
+            cursor: pointer;
+            border: none;
+            margin-top: 30px;
+            transition: transform 0.2s ease;
+            width: 70%;
+            margin: 20px auto;
+            box-shadow: 0 0 10px rgba(212, 175, 55, 0.7);
+        }
+
+        .eid-button:hover {
+            transform: scale(1.1);
+            background-color: #c4a200;
+        }
+
+        /* تأثير العيون المتحركة */
+        .eyes {
+            position: absolute;
+            width: 50px;
+            height: 50px;
+            background-color: #fff;
+            border-radius: 50%;
+            box-shadow: 0 0 20px #fff;
+            animation: moveEyes 4s infinite alternate;
+        }
+
+        @keyframes moveEyes {
+            from {
+                top: 10%;
+                left: 10%;
+            }
+            to {
+                top: 70%;
+                left: 70%;
+            }
+        }
+
+        .copy-link-button {
+            margin-top: 20px;
+            font-size: 1.2em;
+            padding: 10px 20px;
+            background-color: #d4af37;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            box-shadow: 0 0 10px rgba(212, 175, 55, 0.7);
+        }
+
+        .copy-link-button:hover {
+            background-color: #c4a200;
+        }
+        
+    </style>
+</head>
+<body>
+
+    <!-- العنوان الأساسي -->
+    <h1>كل سنة وانت طيب!</h1>
+
+    <!-- النص التمهيدي -->
+    <div class="intro-text">
+        رمضان كريم عليكم يا أهل الخير، كل عام وأنتم بخير
+    </div>
+
+    <!-- زر "خد العيدية" -->
+    <button class="eid-button">خد العيدية!</button>
+
+    <!-- تأثير العيون المتحركة -->
+    <div class="eyes" style="top: 20%; left: 30%;"></div>
+    <div class="eyes" style="top: 50%; left: 60%;"></div>
+
+    <!-- الصوت (أغنية العيد) -->
+    <audio id="audio" preload="auto">
+        <source src="https://k.top4top.io/m_3375k01630.mp3" type="audio/mp3">
+        أغنية العيد
+    </audio> 
+
+    <!-- زر لتشغيل الأغنية (إذا كان الصوت لا يعمل تلقائيًا) -->
+    <button id="playAudioBtn" style="display:none;">شغل الأغنية</button>
+
+    <!-- زر لنسخ رابط الموقع -->
+    <button class="copy-link-button" id="copyLinkBtn"> ابعت للعلوق وافرح😂</button>
+
+    <script>
+        // محاولة تشغيل الأغنية فورًا
+        window.onload = () => {
+            const audio = document.getElementById("audio");
+            const playAudioBtn = document.getElementById("playAudioBtn");
+
+            // إذا لم تبدأ الأغنية تلقائيًا، يظهر الزر
+            playAudioBtn.style.display = 'block';
+            playAudioBtn.onclick = () => {
+                audio.play();
+                playAudioBtn.style.display = 'none'; // إخفاء الزر بعد الضغط
+            };
+
+            // رسالة الخليجي تظهر بعد 2 ثواني
+            setTimeout(() => {
+                alert("الخليجي بيقولك كل سنة وانت طيب يا حبيبي!");
+            }, 2000); // 2 ثواني
+
+            // التعامل مع زر العيدية
+            const eidBtn = document.querySelector(".eid-button");
+            eidBtn.onclick = () => {
+                // إظهار الرسالة الأولى بعد الضغط
+                alert("ابعتلي العيدية على كاش ");
+
+                // إظهار الرسالة الثانية بعد ثانية واحدة
+                setTimeout(() => {
+                    alert("مقبوله منك العيدية يعلق😂 ");
+                }, 1000);
+
+                // إيقاف الزر بعد الضغط
+                eidBtn.textContent = "تم استلام العيدية!";
+                eidBtn.style.backgroundColor = "#00e600";
+                eidBtn.disabled = true;
+            };
+
+            // إضافة تأثيرات العيون المتحركة
+            const eyes = document.querySelectorAll(".eyes");
+            setInterval(() => {
+                eyes.forEach(eye => {
+                    eye.style.top = Math.random() * 80 + "%";
+                    eye.style.left = Math.random() * 80 + "%";
+                });
+            }, 1000);
+
+            // توجيه المستخدم بعد 7 ثوانٍ
+            setTimeout(() => {
+                // تم حذف رابط example.com هنا
+            }, 7000); // بعد 7 ثوانٍ
+        };
+
+        // خاصية نسخ رابط الموقع للمشاركة
+        const copyLinkBtn = document.getElementById('copyLinkBtn');
+        copyLinkBtn.addEventListener('click', () => {
+            const url = window.location.href;
+            navigator.clipboard.writeText(url).then(() => {
+                alert(' مبروك خدت نسخ وابعته للعلوق');
+            }).catch(err => {
+                alert('حدث خطأ أثناء نسخ الرابط.');
+            });
+        });
+    </script>
+
+</body>
+</html>
